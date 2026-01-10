@@ -1,13 +1,14 @@
-import SideBar from "./components/SideBar";
-import Header from "./components/Header";
+import BannerSection from "./components/BannerSection";
+import FlashSection from "./components/flash-Sales/FlashSection";
+import ProductSection from "./components/Product-list/ProductSection";
 
 export default function Home() {
   return (
-    <>
-    <aside className="flex justify-center">
-    <Header />
-    <SideBar />
-    </aside>
-    </>
+    <div className="flex flex-col w-full gap-5">
+      <BannerSection />
+      <FlashSection />
+      <ProductSection />
+      <ProductSection />
+    </div>
   );
 }
