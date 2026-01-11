@@ -1,34 +1,67 @@
+"use client"
 import Image from "next/image";
 import Link from "next/link";
+import DynamicIcon from "lucide-react/dynamic";
 import product from "@/app/assets/products/product-test.webp";
+import { Badge } from "@/components/ui/badge";
+import { Progress } from "@/components/ui/progress";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
-export default function FlashItem() {
-    const productItem : any ={
-        name : "Weekly Diamond",
-        subCategory : "mobile legend",
-        price : 15000,
-        amount : 100,
-        progres : 50,
-    }
+export default function FlashItem({ productItem }: any) {
+    const sold = (productItem.sold / productItem.stock) * 100;
+    const stockLeft = (productItem.stock - productItem.sold);
+    const discountPrice = (productItem.price - (productItem.price * productItem.discount / 100));
+    const discountedPrice =Number(discountPrice.toFixed(0));
     return (
-      <Link
-        href={"/"}
-        className="flex flex-col py-5 px-2 gap-2 p-5 w-60 h-60 justify-center items-center bg-white border border-slate-300 rounded-lg"
-      >
-        <div className="flex flex-col justify-center items-start">
-          <div className="flex gap-2">
-            <Image src={product} alt="product" width={60} className="rounded-[20%]"/>
-            <div className="flex flex-col">
-              <h3 className="text-md font-bold">{productItem.name}</h3>
-              <p className="text-sm font-light">{productItem.subCategory}</p>
+      <Link href={"/"} className="block w-full">
+        <Card className="w-full min-h-[320px] flex flex-col justify-between overflow-hidden">
+          <CardHeader className="p-4 flex flex-col items-center">
+            <div className="relative w-24 h-24 mb-2">
+              <Image
+                src={product}
+                alt="product"
+                className="object-contain rounded-2xl"
+              ></Image>
             </div>
-          </div>
-          <div>
-            <p className="text-xl font-medium">Rp.{productItem.price}</p>
-          </div>
-          <div>
-          </div>
-        </div>
+            <div className="space-y-1 text-center">
+              <CardTitle className="text-sm line-clamp-1">
+                {productItem.name}
+              </CardTitle>
+              <CardDescription className="text-xs">
+                {productItem.subCategory}
+              </CardDescription>
+            </div>
+          </CardHeader>
+          <CardContent className="p-4 pt-0 space-y-2">
+            <Badge variant={"destructive"}>{productItem.discount}% OFF</Badge>
+            <div className="flex justify-between items-baseline gap-1 w-full">
+              <div className="flex justify-start items-center gap-1">
+                <p className="line-through text-xs text-muted-foreground">
+                  Rp.{productItem.price.toLocaleString()}
+                </p>
+                <p className="text-sm font-bold text-primary">
+                  Rp.{discountedPrice.toLocaleString()}
+                </p>
+              </div>
+            </div>
+          </CardContent>
+          <CardFooter className="p-4 pt-0 flex flex-col gap-2">
+            <div className="flex justify-between w-full ">
+              <span className="text-sm font-medium">
+                Tersisa: {stockLeft}
+              </span>
+            </div>
+            <Progress value={sold} className="h-1.5"></Progress>
+          </CardFooter>
+        </Card>
       </Link>
     );
 }
