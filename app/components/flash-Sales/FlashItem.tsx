@@ -2,8 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import product from "@/app/assets/products/product-test.webp";
 
-
-
 export default function FlashItem() {
     const productItem : any ={
         name : "Weekly Diamond",
