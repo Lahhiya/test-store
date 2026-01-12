@@ -37,7 +37,7 @@ export default function BannerSection() {
   ];
   const plugin = useRef([
     Autoplay({
-      delay: 2000,
+      delay: 3000,
       stopOnMouseEnter: true,
       stopOnInteraction: false,
     }),
@@ -58,12 +58,12 @@ export default function BannerSection() {
               return (
                 <CarouselItem
                   key={item.id}
-                  className="flex justify-center items-center w-full"
+                  className="flex justify-center items-center w-[80%]"
                 >
                   <Image
                     src={item.image}
                     alt="banner"
-                    className="w-full h-52 rounded-xl shadow shadow-slate-800 object-cover"
+                    className="w-2/3 h-52 rounded-xl shadow shadow-slate-800 object-cover"
                   ></Image>
                 </CarouselItem>
               );
