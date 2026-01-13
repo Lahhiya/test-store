@@ -1,6 +1,6 @@
 "use client"
-import ProductItem from "../Product-container/ProductItem";
-import { hotItemType } from "@/app/schema/HotItem.schema";
+import ProductItem from "@/components/hot-sales/ProductItem"
+import { hotItemType } from "@/schema/HotItem.schema";
 export default function ProductSection({hotItems}: {hotItems: hotItemType[]}) {
   return (
     <section className="bg-slate-100 border border-slate-300 rounded-lg p-5">

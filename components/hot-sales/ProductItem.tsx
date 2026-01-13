@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { hotItemType } from "@/app/schema/HotItem.schema";
+import { hotItemType } from "@/schema/HotItem.schema";
 import {
   Card,
   CardAction,
@@ -10,10 +10,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import productIcon from "@/app/assets/products/banner.webp";
+import productIcon from "@/assets/products/banner.webp";
 
-export default function ProductItem({item} : {item : hotItemType}) {
-
+export default function ProductItem({ item }: { item: hotItemType }) {
   return (
     <Link href={`/product/${item.id}`} className="group">
       <Card className="h-44 gap-2 relative hover:shadow-md border-muted hover:border-primary hover:scale-105 duration-100">

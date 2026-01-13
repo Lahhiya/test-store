@@ -12,7 +12,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import productIcon from "@/app/assets/products/banner.webp"
+import productIcon from "@/assets/products/banner.webp";
 export default function FlashItem({
   productItem,
 }: {

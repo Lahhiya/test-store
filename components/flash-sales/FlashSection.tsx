@@ -1,9 +1,9 @@
 "use client";
 import { useRef } from "react";
 import { DynamicIcon } from "lucide-react/dynamic";
-import FlashItem from "./FlashItem";
 import AutoScroll from "embla-carousel-auto-scroll";
-import FlashItems from "../../api/FlashItems.json";
+import FlashCollection from "@/api/FlashCollection.json"
+import FlashItem from "@/components/flash-sales/FlashItem";
 import { FlashItemTypes } from "../../schema/FlashItem.schemas";
 
 import {
@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/carousel";
 
 export default function FlashSection() {
-  const productItem = FlashItems as FlashItemTypes[];
+  const productItem = FlashCollection as FlashItemTypes[];
   const plugin = useRef([
     AutoScroll({
       stopOnMouseEnter: true,

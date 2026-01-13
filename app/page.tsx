@@ -1,9 +1,9 @@
-import BannerSection from "./components/BannerSection";
-import FlashSection from "./components/flash-Sales/FlashSection";
-import ProductSection from "./components/Product-container/ProductSection";
-import ProductCollections from "../app/api/ProductCollections.json";
-import { productType } from "./schema/ProductItem.schemas";
-import { hotItemType } from "./schema/HotItem.schema";
+import BannerSection from "../components/BannerSection";
+import FlashSection from "../components/flash-sales/FlashSection";
+import ProductSection from "../components/hot-sales/ProductSection";
+import ProductCollections from "@/api/ProductCollections.json";
+import { productType } from "../schema/ProductItem.schemas";
+import { hotItemType } from "../schema/HotItem.schema";
 
 export default function Home() {
   const colletion = ProductCollections as productType[];
@@ -21,12 +21,14 @@ export default function Home() {
       });
     });
   }
-  const HotItems = getAllPrice().sort((a, b) => a.sold - b.sold).slice(0, hotITemAmout);
+  const HotItems = getAllPrice()
+    .sort((a, b) => a.sold - b.sold)
+    .slice(0, hotITemAmout);
   return (
     <div className="flex flex-col w-full gap-5">
       <BannerSection />
       <FlashSection />
-      <ProductSection hotItems={HotItems}/>
+      <ProductSection hotItems={HotItems} />
     </div>
   );
 }
