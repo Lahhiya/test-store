@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState, useRef } from "react";
-import banner from "../assets/banners/test-banner.jpg";
+import banner from "@/assets/dummy/banner.jpg";
 import Autoplay from "embla-carousel-autoplay";
 import {
   Carousel,

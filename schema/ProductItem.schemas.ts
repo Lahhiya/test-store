@@ -1,3 +1,4 @@
+import { type } from "os";
 import * as z from "zod";
 
 const gameSchema = z.object({
@@ -24,12 +25,14 @@ const eWalletSchema = z.object({
   paylater: z.boolean(),
 });
 
+const dataSchema = z.array(z.discriminatedUnion("category",[gameSchema,eWalletSchema]))
 
 const productSchema = z.object({
   name: z.string(),
-  data : z.array(z.discriminatedUnion("category",[gameSchema,eWalletSchema]))
+  data : dataSchema
 });
 
 export type productType = z.infer<typeof productSchema>
+export type productDataType = z.infer<typeof dataSchema>
 export type gameType = z.infer<typeof gameSchema>
 export type eWalletType = z.infer<typeof eWalletSchema>
