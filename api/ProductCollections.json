@@ -5,7 +5,7 @@
       {
         "id": 1,
         "brand": "Mobile Legends",
-        "name": "Weekly Diamond Pass",
+        "product": "Weekly Diamond Pass",
         "slug": "mobile-legends",
         "category": "game",
         "price": 30000,
@@ -16,7 +16,7 @@
       {
         "id": 2,
         "brand": "Mobile Legends",
-        "name": "86 Diamonds",
+        "product": "86 Diamonds",
         "slug": "mobile-legends",
         "category": "game",
         "price": 20000,
@@ -27,7 +27,7 @@
       {
         "id": 3,
         "brand": "Mobile Legends",
-        "name": "172 Diamonds",
+        "product": "172 Diamonds",
         "slug": "mobile-legends",
         "category": "game",
         "price": 40000,
@@ -38,7 +38,7 @@
       {
         "id": 4,
         "brand": "Mobile Legends",
-        "name": "257 Diamonds",
+        "product": "257 Diamonds",
         "slug": "mobile-legends",
         "category": "game",
         "price": 60000,
@@ -49,7 +49,7 @@
       {
         "id": 5,
         "brand": "Mobile Legends",
-        "name": "706 Diamonds",
+        "product": "706 Diamonds",
         "slug": "mobile-legends",
         "category": "game",
         "price": 150000,
@@ -60,7 +60,7 @@
       {
         "id": 6,
         "brand": "PUBG Mobile",
-        "name": "60 UC",
+        "product": "60 UC",
         "slug": "pubg-mobile",
         "category": "game",
         "price": 15000,
@@ -71,7 +71,7 @@
       {
         "id": 7,
         "brand": "PUBG Mobile",
-        "name": "325 UC",
+        "product": "325 UC",
         "slug": "pubg-mobile",
         "category": "game",
         "price": 75000,
@@ -82,7 +82,7 @@
       {
         "id": 8,
         "brand": "PUBG Mobile",
-        "name": "660 UC",
+        "product": "660 UC",
         "slug": "pubg-mobile",
         "category": "game",
         "price": 150000,
@@ -93,7 +93,7 @@
       {
         "id": 9,
         "brand": "PUBG Mobile",
-        "name": "Royale Pass",
+        "product": "Royale Pass",
         "slug": "pubg-mobile",
         "category": "game",
         "price": 150000,
@@ -104,7 +104,7 @@
       {
         "id": 10,
         "brand": "PUBG Mobile",
-        "name": "Elite Pass Plus",
+        "product": "Elite Pass Plus",
         "slug": "pubg-mobile",
         "category": "game",
         "price": 350000,
@@ -115,7 +115,7 @@
       {
         "id": 11,
         "brand": "Free Fire",
-        "name": "50 Diamonds",
+        "product": "50 Diamonds",
         "slug": "free-fire",
         "category": "game",
         "price": 8000,
@@ -126,7 +126,7 @@
       {
         "id": 12,
         "brand": "Free Fire",
-        "name": "140 Diamonds",
+        "product": "140 Diamonds",
         "slug": "free-fire",
         "category": "game",
         "price": 20000,
@@ -137,7 +137,7 @@
       {
         "id": 13,
         "brand": "Free Fire",
-        "name": "Monthly Membership",
+        "product": "Monthly Membership",
         "slug": "free-fire",
         "category": "game",
         "price": 120000,
@@ -148,7 +148,7 @@
       {
         "id": 14,
         "brand": "Free Fire",
-        "name": "Weekly Membership",
+        "product": "Weekly Membership",
         "slug": "free-fire",
         "category": "game",
         "price": 30000,
@@ -159,7 +159,7 @@
       {
         "id": 15,
         "brand": "Free Fire",
-        "name": "355 Diamonds",
+        "product": "355 Diamonds",
         "slug": "free-fire",
         "category": "game",
         "price": 50000,
@@ -170,7 +170,7 @@
       {
         "id": 16,
         "brand": "Valorant",
-        "name": "475 Points",
+        "product": "475 Points",
         "slug": "valorant",
         "category": "game",
         "price": 52000,
@@ -181,7 +181,7 @@
       {
         "id": 17,
         "brand": "Valorant",
-        "name": "1000 Points",
+        "product": "1000 Points",
         "slug": "valorant",
         "category": "game",
         "price": 105000,
@@ -192,7 +192,7 @@
       {
         "id": 18,
         "brand": "Valorant",
-        "name": "2050 Points",
+        "product": "2050 Points",
         "slug": "valorant",
         "category": "game",
         "price": 210000,
@@ -203,7 +203,7 @@
       {
         "id": 19,
         "brand": "Valorant",
-        "name": "3650 Points",
+        "product": "3650 Points",
         "slug": "valorant",
         "category": "game",
         "price": 360000,
@@ -214,7 +214,7 @@
       {
         "id": 20,
         "brand": "Valorant",
-        "name": "5350 Points",
+        "product": "5350 Points",
         "slug": "valorant",
         "category": "game",
         "price": 520000,
@@ -225,7 +225,7 @@
       {
         "id": 21,
         "brand": "Genshin Impact",
-        "name": "Blessing of Welkin",
+        "product": "Blessing of Welkin",
         "slug": "genshin-impact",
         "category": "game",
         "price": 79000,
@@ -236,7 +236,7 @@
       {
         "id": 22,
         "brand": "Genshin Impact",
-        "name": "60 Genesis",
+        "product": "60 Genesis",
         "slug": "genshin-impact",
         "category": "game",
         "price": 16000,
@@ -247,7 +247,7 @@
       {
         "id": 23,
         "brand": "Genshin Impact",
-        "name": "300 Genesis",
+        "product": "300 Genesis",
         "slug": "genshin-impact",
         "category": "game",
         "price": 79000,
@@ -258,7 +258,7 @@
       {
         "id": 24,
         "brand": "Genshin Impact",
-        "name": "980 Genesis",
+        "product": "980 Genesis",
         "slug": "genshin-impact",
         "category": "game",
         "price": 249000,
@@ -269,7 +269,7 @@
       {
         "id": 25,
         "brand": "Genshin Impact",
-        "name": "1980 Genesis",
+        "product": "1980 Genesis",
         "slug": "genshin-impact",
         "category": "game",
         "price": 479000,
@@ -285,7 +285,7 @@
       {
         "id": 26,
         "brand": "Dana",
-        "name": "Dana 20K",
+        "product": "Dana 20K",
         "slug": "dana",
         "category": "ewallet",
         "price": 21500,
@@ -296,7 +296,7 @@
       {
         "id": 27,
         "brand": "Dana",
-        "name": "Dana 50K",
+        "product": "Dana 50K",
         "slug": "dana",
         "category": "ewallet",
         "price": 51500,
@@ -307,7 +307,7 @@
       {
         "id": 28,
         "brand": "Dana",
-        "name": "Dana 100K",
+        "product": "Dana 100K",
         "slug": "dana",
         "category": "ewallet",
         "price": 101500,
@@ -318,7 +318,7 @@
       {
         "id": 29,
         "brand": "Dana",
-        "name": "Dana 200K",
+        "product": "Dana 200K",
         "slug": "dana",
         "category": "ewallet",
         "price": 201500,
@@ -329,7 +329,7 @@
       {
         "id": 30,
         "brand": "Dana",
-        "name": "Dana 500K",
+        "product": "Dana 500K",
         "slug": "dana",
         "category": "ewallet",
         "price": 501500,
@@ -340,7 +340,7 @@
       {
         "id": 31,
         "brand": "OVO",
-        "name": "OVO 20K",
+        "product": "OVO 20K",
         "slug": "ovo",
         "category": "ewallet",
         "price": 22000,
@@ -351,7 +351,7 @@
       {
         "id": 32,
         "brand": "OVO",
-        "name": "OVO 50K",
+        "product": "OVO 50K",
         "slug": "ovo",
         "category": "ewallet",
         "price": 52000,
@@ -362,7 +362,7 @@
       {
         "id": 33,
         "brand": "OVO",
-        "name": "OVO 100K",
+        "product": "OVO 100K",
         "slug": "ovo",
         "category": "ewallet",
         "price": 102000,
@@ -373,7 +373,7 @@
       {
         "id": 34,
         "brand": "OVO",
-        "name": "OVO 200K",
+        "product": "OVO 200K",
         "slug": "ovo",
         "category": "ewallet",
         "price": 202000,
@@ -384,7 +384,7 @@
       {
         "id": 35,
         "brand": "OVO",
-        "name": "OVO 300K",
+        "product": "OVO 300K",
         "slug": "ovo",
         "category": "ewallet",
         "price": 302000,
@@ -395,7 +395,7 @@
       {
         "id": 36,
         "brand": "Gopay",
-        "name": "Gopay 10K",
+        "product": "Gopay 10K",
         "slug": "gopay",
         "category": "ewallet",
         "price": 12000,
@@ -406,7 +406,7 @@
       {
         "id": 37,
         "brand": "Gopay",
-        "name": "Gopay 25K",
+        "product": "Gopay 25K",
         "slug": "gopay",
         "category": "ewallet",
         "price": 27000,
@@ -417,7 +417,7 @@
       {
         "id": 38,
         "brand": "Gopay",
-        "name": "Gopay 50K",
+        "product": "Gopay 50K",
         "slug": "gopay",
         "category": "ewallet",
         "price": 52000,
@@ -428,7 +428,7 @@
       {
         "id": 39,
         "brand": "Gopay",
-        "name": "Gopay 100K",
+        "product": "Gopay 100K",
         "slug": "gopay",
         "category": "ewallet",
         "price": 102000,
@@ -439,7 +439,7 @@
       {
         "id": 40,
         "brand": "Gopay",
-        "name": "Gopay 250K",
+        "product": "Gopay 250K",
         "slug": "gopay",
         "category": "ewallet",
         "price": 252000,
@@ -450,7 +450,7 @@
       {
         "id": 41,
         "brand": "ShopeePay",
-        "name": "SPay 10K",
+        "product": "SPay 10K",
         "slug": "shopeepay",
         "category": "ewallet",
         "price": 11000,
@@ -461,7 +461,7 @@
       {
         "id": 42,
         "brand": "ShopeePay",
-        "name": "SPay 20K",
+        "product": "SPay 20K",
         "slug": "shopeepay",
         "category": "ewallet",
         "price": 21000,
@@ -472,7 +472,7 @@
       {
         "id": 43,
         "brand": "ShopeePay",
-        "name": "SPay 50K",
+        "product": "SPay 50K",
         "slug": "shopeepay",
         "category": "ewallet",
         "price": 51000,
@@ -483,7 +483,7 @@
       {
         "id": 44,
         "brand": "ShopeePay",
-        "name": "SPay 100K",
+        "product": "SPay 100K",
         "slug": "shopeepay",
         "category": "ewallet",
         "price": 101000,
@@ -494,7 +494,7 @@
       {
         "id": 45,
         "brand": "ShopeePay",
-        "name": "SPay 200K",
+        "product": "SPay 200K",
         "slug": "shopeepay",
         "category": "ewallet",
         "price": 201000,
@@ -505,7 +505,7 @@
       {
         "id": 46,
         "brand": "LinkAja",
-        "name": "LinkAja 10K",
+        "product": "LinkAja 10K",
         "slug": "linkaja",
         "category": "ewallet",
         "price": 11500,
@@ -516,7 +516,7 @@
       {
         "id": 47,
         "brand": "LinkAja",
-        "name": "LinkAja 25K",
+        "product": "LinkAja 25K",
         "slug": "linkaja",
         "category": "ewallet",
         "price": 26500,
@@ -527,7 +527,7 @@
       {
         "id": 48,
         "brand": "LinkAja",
-        "name": "LinkAja 50K",
+        "product": "LinkAja 50K",
         "slug": "linkaja",
         "category": "ewallet",
         "price": 51500,
@@ -538,7 +538,7 @@
       {
         "id": 49,
         "brand": "LinkAja",
-        "name": "LinkAja 100K",
+        "product": "LinkAja 100K",
         "slug": "linkaja",
         "category": "ewallet",
         "price": 101500,
@@ -549,7 +549,7 @@
       {
         "id": 50,
         "brand": "LinkAja",
-        "name": "LinkAja 150K",
+        "product": "LinkAja 150K",
         "slug": "linkaja",
         "category": "ewallet",
         "price": 151500,

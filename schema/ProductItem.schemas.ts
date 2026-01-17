@@ -1,10 +1,9 @@
-import { type } from "os";
 import * as z from "zod";
 
 const gameSchema = z.object({
   id: z.number(),
   brand: z.string(),
-  name: z.string(),
+  product : z.string(),
   slug : z.string(),
   category: z.literal("game"),
   price: z.number(),
@@ -16,7 +15,7 @@ const gameSchema = z.object({
 const eWalletSchema = z.object({
   id: z.number(),
   brand: z.string(),
-  name: z.string(),
+  product : z.string(),
   slug : z.string(),
   category: z.literal("ewallet"),
   price: z.number(),

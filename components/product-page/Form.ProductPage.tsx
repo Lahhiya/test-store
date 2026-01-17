@@ -1,4 +1,5 @@
 import { productDataType } from "@/schema/ProductItem.schemas";
+import { validServerIdSchema, validUserIdSchema } from "@/schema/form.schemas";
 import { DynamicIcon } from "lucide-react/dynamic";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -12,13 +13,42 @@ import {
   SelectLabel,
   SelectGroup,
 } from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
+import { modalType, wrapperDetailTrdType } from "@/schema/wrapper.schemas";
+import { safeParse } from "zod";
+import { wrap } from "module";
 
-export default function FormProductPage({datas,selected}: {datas:productDataType,selected:number}) {
-  const [voucher,setVoucher] = useState<string>("")
+export default function FormProductPage({
+  datas,
+  setModal,
+  wrapDetailTrd,
+}: {
+  datas: productDataType;
+  setModal: modalType;
+  wrapDetailTrd: wrapperDetailTrdType
+}) {
+  const [voucher, setVoucher] = useState<string>("");
   const testVoucher = "entahjirgueajagktau";
-  const filtered = datas.find((data)=> data.id === selected)
+  const filtered = datas.find((data) => data.id === wrapDetailTrd.detailTrd.id);
   const validVoucher = testVoucher === voucher;
+
+  function handlerUserId(e : string | number) {
+    const res = validUserIdSchema.safeParse(e)
+    if(res.success){
+      wrapDetailTrd.setDetailTrd({
+        key : "ADD_USERID",
+        payload : res.data
+      })
+    }
+  }
+  function handlerServerId(e : string | number) {
+    const res = validServerIdSchema.safeParse(e)
+    if(res.success){
+      wrapDetailTrd.setDetailTrd({
+        key : "ADD_SERVERID",
+        payload : res.data
+      })
+    }
+  }
 
   return (
     <div className="mt-4">
@@ -30,9 +60,10 @@ export default function FormProductPage({datas,selected}: {datas:productDataType
                 Nama Product
               </Label>
               <Input
+              type="text"
                 disabled
                 id="brand"
-                value={filtered.brand + " " + filtered.name}
+                value={wrapDetailTrd.detailTrd.brand + " " + wrapDetailTrd.detailTrd.product}
                 className="bg-background font-semibold"
               />
             </div>
@@ -43,7 +74,7 @@ export default function FormProductPage({datas,selected}: {datas:productDataType
               <Input
                 disabled
                 id="name"
-                value={"Rp." + filtered.price.toLocaleString()}
+                value={"Rp." + wrapDetailTrd.detailTrd.price?.toLocaleString()}
                 className="bg-background font-semibold"
               />
             </div>
@@ -58,6 +89,8 @@ export default function FormProductPage({datas,selected}: {datas:productDataType
               <Input
                 id="idUser"
                 placeholder="Masukan User ID..."
+                value={wrapDetailTrd.detailTrd.userId}
+                onChange={(e)=> handlerUserId(e.target.value)}
                 className="bg-background focus-visible:ring-primary"
               />
             </div>
@@ -71,6 +104,8 @@ export default function FormProductPage({datas,selected}: {datas:productDataType
               </Label>
               <Input
                 id="serverUser"
+                value={wrapDetailTrd.detailTrd.serverId}
+                onChange={(e)=> handlerServerId(e.target.value)}
                 placeholder="Masukan ID Server..."
                 className="bg-background focus-visible:ring-primary"
               />
@@ -130,8 +165,8 @@ export default function FormProductPage({datas,selected}: {datas:productDataType
             </div>
           </div>
 
-          <div className="grid grid-cols-1 gap-4">
-            <div>
+          <div className="grid grid-cols-5 gap-4">
+            <div className="col-span-2">
               <Label htmlFor="emailUser" className="mb-2 block font-medium">
                 Email (optional)
               </Label>
@@ -142,9 +177,25 @@ export default function FormProductPage({datas,selected}: {datas:productDataType
                 className="bg-background focus-visible:ring-primary"
               />
             </div>
+            <div className="col-span-3">
+              <Label htmlFor="emailUser" className="mb-2 block font-medium">
+                Pesan (optional)
+              </Label>
+              <Input
+                id="emailUser"
+                type="text"
+                placeholder="Tinggalkan pesan..."
+                className="bg-background focus-visible:ring-primary"
+              />
+            </div>
+          </div>
+          <div>
             <div className="flex items-center justify-end gap-2">
-              <button className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:cursor-pointer">
-                Beli Sekarang
+              <button
+                onClick={() => setModal.setter(true)}
+                className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:cursor-pointer"
+              >
+                Bayar Sekarang
               </button>
             </div>
           </div>

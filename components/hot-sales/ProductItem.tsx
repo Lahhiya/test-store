@@ -20,7 +20,7 @@ export default function ProductItem({ item }: { item: hotItemType }) {
           <div className="relative w-16 h-16">
             <Image
               src={productIcon}
-              alt={item.name}
+              alt={item.brand}
               fill
               className="object-contain rounded-md w-full"
             />
