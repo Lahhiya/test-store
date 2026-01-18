@@ -23,9 +23,8 @@ import {
   modalType,
   wrapperDetailTrdType,
 } from "@/schema/wrapper.schemas";
-import { toast } from "sonner";
-import { Key } from "lucide-react";
-import { FUNCTIONS_CONFIG_MANIFEST } from "next/dist/shared/lib/constants";
+import { useEffect, useState } from "react";
+import { useImmer } from "use-immer";
 
 export default function FormProductPage({
   datas,
@@ -36,8 +35,15 @@ export default function FormProductPage({
   setModal: modalType;
   wrapDetailTrd: wrapperDetailTrdType;
 }) {
+  const initError = {
+    userId : "",
+    serverId : "",
+    paymentId : "",
+  }
   const testVoucher = "0909";
   const filtered = datas.find((data) => data.id === wrapDetailTrd.detailTrd.id);
+  const [voucherValid,setVouchervalid] = useState<boolean>(false)
+  const [errors,setErrors] = useImmer(initError)
 
   function handleUserId(e : Number | string){
     const res = validUserIdSchema.safeParse(e)
@@ -75,13 +81,49 @@ export default function FormProductPage({
   function handleVoucher(e : string){
     const res = validVoucherSchema.safeParse(e)
     if(!res.success){
-      return
+      return 
     }
     wrapDetailTrd.setDetailTrd({
       key : "ADD_VOUCHER",
       payload : res.data
     })
   }
+
+  function isFilled(){
+  const userId = wrapDetailTrd.detailTrd.userId === undefined
+  const serverId = wrapDetailTrd.detailTrd.serverId === undefined
+  const payment = wrapDetailTrd.detailTrd.payment === ""
+    if(userId){
+      return (
+        setErrors((d)=>{
+          d.userId = "maaf UserID Tidak Boleh Kosong" 
+        })
+        
+      )
+    }
+    if(serverId){
+      return setErrors((d)=> {
+        d.serverId = "maaf SeverID Tidak Boleh Kosong"
+      })
+    }
+    if(payment){
+      return setErrors((d)=>{
+        d.paymentId = "tolong pilih salah 1 metode pembayaran"
+      })
+    } else{
+      return setModal.setter(true)
+    }
+  }
+
+  useEffect(()=>{
+  const val = wrapDetailTrd.detailTrd.voucher === testVoucher;
+  setVouchervalid(val);
+  wrapDetailTrd.setDetailTrd({
+    key: "ADD_DISCOUNT",
+    payload: val ? 10 : 0,
+  });
+  },[wrapDetailTrd.detailTrd.voucher,wrapDetailTrd.detailTrd.price])
+
   return (
     <div className="mt-4">
       {filtered ? (
@@ -130,8 +172,8 @@ export default function FormProductPage({
                     ? wrapDetailTrd.detailTrd.userId
                     : ""
                 }
-                onChange={(e)=> handleUserId(e.target.value)}
-                className="bg-background focus-visible:ring-primary"
+                onChange={(e) => handleUserId(e.target.value)}
+                className={`bg-background focus  ${errors.userId !== "" ? "focus-visible:ring-red-500" : "focus-visible:ring-primary"}`}
               />
             </div>
             <div>
@@ -149,9 +191,7 @@ export default function FormProductPage({
                     ? wrapDetailTrd.detailTrd.serverId
                     : ""
                 }
-                onChange={(e) =>
-                  handleServerId(e.target.value)
-                }
+                onChange={(e) => handleServerId(e.target.value)}
                 placeholder="Masukan ID Server..."
                 className="bg-background focus-visible:ring-primary"
               />
@@ -196,9 +236,7 @@ export default function FormProductPage({
                 <span>
                   <DynamicIcon
                     className={`${
-                      wrapDetailTrd.detailTrd.voucher === testVoucher
-                        ? "text-green-500 visible"
-                        : "invisible"
+                      voucherValid ? "text-green-500 visible" : "invisible"
                     }`}
                     name="check"
                     size={15}
@@ -213,23 +251,21 @@ export default function FormProductPage({
                     ? wrapDetailTrd.detailTrd.voucher
                     : ""
                 }
-                onChange={(e) =>
-                  handleVoucher(e.target.value)
-                }
+                onChange={(e) => handleVoucher(e.target.value)}
                 placeholder="Masukan Voucher..."
                 className={"bg-background focus-visible:ring-primary"}
               />
             </div>
           </div>
 
-            <div className="flex items-center justify-end gap-2">
-              <button
-                onClick={() => setModal.setter(true)}
-                className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:cursor-pointer"
-              >
-                Bayar Sekarang
-              </button>
-            </div>
+          <div className="flex items-center justify-end gap-2">
+            <button
+              onClick={isFilled}
+              className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:cursor-pointer"
+            >
+              Bayar Sekarang
+            </button>
+          </div>
         </div>
       ) : (
         <div className="flex flex-col gap-3 items-center justify-center p-8 text-muted-foreground border-2 border-solid border-border rounded-lg bg-muted/10">

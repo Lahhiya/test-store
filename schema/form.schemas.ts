@@ -9,6 +9,7 @@ export const initTrdSchema = z.object({
   serverId: z.number().optional(),
   payment: z.string().optional(),
   voucher: z.string().optional(),
+  discount: z.number().optional(),
   email: z.email().optional(),
   message: z.string().optional(),
 });
@@ -32,7 +33,10 @@ const addPriceSchema = z.object({
   key: z.literal("ADD_PRICE"),
   payload: z.number(),
 });
-
+const addDicountSchema = z.object({
+  key : z.literal("ADD_DISCOUNT"),
+  payload : z.number(),
+})
 const addUserIdSchema = z.object({
   key: z.literal("ADD_USERID"),
   payload: z.number(),
@@ -53,21 +57,10 @@ const addVoucherSchema = z.object({
   payload: z.string(),
 });
 
-// const addEmailSchema = z.object({
-//   key: z.literal("ADD_EMAIL"),
-//   payload: z.email(),
-// });
-
-// const addMsgSchema = z.object({
-//   key: z.literal("ADD_MSG"),
-//   payload: z.string().max(1),
-// });
-
 export const validUserIdSchema = z.coerce.number().positive();
 export const validServerIdSchema = z.coerce.number().positive();
 export const validPaymentSchema = z.enum(["bank", "qris", "gopay", "dana"]);
 export const validVoucherSchema = z.string();       
-export const validMsgSchema = z.string().max(1);
 
 const outputTrdSchema = z.object({
   id: z.number(),
@@ -78,7 +71,6 @@ const outputTrdSchema = z.object({
   serverId: validServerIdSchema,
   payment: validPaymentSchema,
   voucher: validVoucherSchema,
-  message: validMsgSchema,
 });
 
 export const actionTrdSchema = z.discriminatedUnion("key", [
@@ -86,6 +78,7 @@ export const actionTrdSchema = z.discriminatedUnion("key", [
   addBrandSchema,
   addProductSchema,
   addPriceSchema,
+  addDicountSchema,
   addUserIdSchema,
   addServerIdSchema,
   addPaymentSchema,

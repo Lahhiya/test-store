@@ -18,6 +18,7 @@ export default function ContProductPage({
   const [selected, setSelected] = useState<number>(0);
   function handleSelect(id:number){
     wrapDetailTrd.setDetailTrd({ key: "ADD_ID", payload: id });
+    wrapDetailTrd.setDetailTrd({ key : "ADD_DISCOUNT", payload : 0})
   }
 
   const isSelected = wrapDetailTrd.detailTrd.id === selected

@@ -17,6 +17,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { Separator } from "@/components/ui/separator";
 
 export default function PageProduct({
   item,
@@ -24,7 +25,6 @@ export default function PageProduct({
   item: { slug: string; category: string };
 }) {
   const datas = ProductColletion as productType[];
-  const [brandInfo, setBrandInfo] = useState<string>("");
   const [modalStatus, setModalStatus] = useState<boolean>(false);
 
   const getIndex = datas.findIndex((data) => data.name === item.category);
@@ -57,8 +57,7 @@ export default function PageProduct({
     serverId: undefined,
     payment: "",
     voucher: "",
-    email: "",
-    message: "",
+    discount: 0,
   };
 
   function detailReducer(
@@ -74,6 +73,8 @@ export default function PageProduct({
         return { ...state, product: action.payload };
       case "ADD_PRICE":
         return { ...state, price: action.payload };
+      case "ADD_DISCOUNT":
+        return {...state, discount : state.price ? (action.payload / 100) * state.price : 0}
       case "ADD_USERID":
         return { ...state, userId: action.payload };
       case "ADD_SERVERID":
@@ -116,6 +117,8 @@ export default function PageProduct({
     }
   }, [wrapDetailTrd.detailTrd.id]);
 
+  const discountActive = wrapDetailTrd.detailTrd.discount !== 0 ? true : false;
+  const finalPrice = wrapDetailTrd.detailTrd.price ? wrapDetailTrd.detailTrd.price - (wrapDetailTrd.detailTrd.discount ? wrapDetailTrd.detailTrd.discount : 0) : 0;
   return (
     <div className="grid gap-5 mx-5 h-100 grid-cols-1 md:grid-cols-5">
       <DesProductPage brandInfo={wrapDetailTrd.detailTrd.brand} />
@@ -133,18 +136,17 @@ export default function PageProduct({
                 tolong periksa kembali data yang anda masukan
               </DialogDescription>
             </DialogHeader>
+            <Separator/>
             <div className="grid gap-4">
-              <div className="grid gap-3">
-                <p>id : {detailTrd.id}</p>
-                <p>brand : {detailTrd.brand}</p>
-                <p>product : {detailTrd.product}</p>
-                <p>price : {detailTrd.price}</p>
-                <p>userId : {detailTrd.userId}</p>
-                <p>serverId : {detailTrd.serverId}</p>
-                <p>payment : {detailTrd.payment}</p>
-                <p>voucher :{detailTrd.voucher}</p>
-              </div>
+              <p>Product : {wrapDetailTrd.detailTrd.brand + " " + wrapDetailTrd.detailTrd.product}</p>
+              <p>
+                Harga : <span className={discountActive ? "line-through" : ""}>Rp.{wrapDetailTrd.detailTrd.price?.toLocaleString()}</span>
+                <span className={discountActive ? "inline": "hidden"}>Rp.{finalPrice.toLocaleString()}</span>
+              </p>
+              <p>Detail ID : {wrapDetailTrd.detailTrd.userId+ "(" + wrapDetailTrd.detailTrd.serverId  +")"}</p>
+              <p>Metode Pembayaran :  {wrapDetailTrd.detailTrd.payment}</p>
             </div>
+            <Separator/>
             <DialogFooter>
               <DialogClose asChild>
                 <Button variant="outline">Cancel</Button>
