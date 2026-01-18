@@ -21,8 +21,6 @@ export default function ContProductPage({
   }
 
   const isSelected = wrapDetailTrd.detailTrd.id === selected
-  
-  console.log(selected)
   return (
     <div className="flex flex-col gap-4 col-span-3 bg-card border border-border rounded-xl p-6 shadow-sm">
       <h2 className="text-3xl uppercase font-semibold">{wrapDetailTrd.detailTrd.brand}</h2>
@@ -51,7 +49,6 @@ export default function ContProductPage({
       </div>
       <FormProductPage
         datas={datas}
-        isSelected={isSelected}
         setModal={setModal}
         wrapDetailTrd={wrapDetailTrd}
       />

@@ -1,9 +1,15 @@
+import { z } from "zod";
 import { productDataType } from "@/schema/ProductItem.schemas";
-import { validServerIdSchema, validUserIdSchema } from "@/schema/form.schemas";
+import {
+  validPaymentSchema,
+  validServerIdSchema,
+  validUserIdSchema,
+  validVoucherSchema,
+} from "@/schema/form.schemas";
 import { DynamicIcon } from "lucide-react/dynamic";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useState } from "react";
+import { Toaster } from "@/components/ui/sonner";
 import {
   Select,
   SelectContent,
@@ -13,9 +19,13 @@ import {
   SelectLabel,
   SelectGroup,
 } from "@/components/ui/select";
-import { modalType, wrapperDetailTrdType } from "@/schema/wrapper.schemas";
-import { safeParse } from "zod";
-import { wrap } from "module";
+import {
+  modalType,
+  wrapperDetailTrdType,
+} from "@/schema/wrapper.schemas";
+import { toast } from "sonner";
+import { Key } from "lucide-react";
+import { FUNCTIONS_CONFIG_MANIFEST } from "next/dist/shared/lib/constants";
 
 export default function FormProductPage({
   datas,
@@ -24,32 +34,54 @@ export default function FormProductPage({
 }: {
   datas: productDataType;
   setModal: modalType;
-  wrapDetailTrd: wrapperDetailTrdType
+  wrapDetailTrd: wrapperDetailTrdType;
 }) {
-  const [voucher, setVoucher] = useState<string>("");
-  const testVoucher = "entahjirgueajagktau";
+  const testVoucher = "0909";
   const filtered = datas.find((data) => data.id === wrapDetailTrd.detailTrd.id);
-  const validVoucher = testVoucher === voucher;
 
-  function handlerUserId(e : string | number) {
+  function handleUserId(e : Number | string){
     const res = validUserIdSchema.safeParse(e)
-    if(res.success){
-      wrapDetailTrd.setDetailTrd({
-        key : "ADD_USERID",
-        payload : res.data
-      })
+    if(!res.success){
+      return
     }
-  }
-  function handlerServerId(e : string | number) {
-    const res = validServerIdSchema.safeParse(e)
-    if(res.success){
-      wrapDetailTrd.setDetailTrd({
-        key : "ADD_SERVERID",
-        payload : res.data
-      })
-    }
+    wrapDetailTrd.setDetailTrd({
+      key : "ADD_USERID",
+      payload : res.data
+    })
   }
 
+  function handleServerId(e : Number | string){
+    const res = validServerIdSchema.safeParse(e)
+    if(!res.success){
+      return
+    }
+    wrapDetailTrd.setDetailTrd({
+      key : "ADD_SERVERID",
+      payload : res.data
+    })
+  }
+
+  function handlePayment(e : string){
+    const res = validPaymentSchema.safeParse(e)
+    if(!res.success){
+      return
+    }
+    wrapDetailTrd.setDetailTrd({
+      key : "ADD_PAYMENT",
+      payload : res.data
+    })
+  }
+
+  function handleVoucher(e : string){
+    const res = validVoucherSchema.safeParse(e)
+    if(!res.success){
+      return
+    }
+    wrapDetailTrd.setDetailTrd({
+      key : "ADD_VOUCHER",
+      payload : res.data
+    })
+  }
   return (
     <div className="mt-4">
       {filtered ? (
@@ -60,10 +92,14 @@ export default function FormProductPage({
                 Nama Product
               </Label>
               <Input
-              type="text"
+                type="text"
                 disabled
                 id="brand"
-                value={wrapDetailTrd.detailTrd.brand + " " + wrapDetailTrd.detailTrd.product}
+                value={
+                  wrapDetailTrd.detailTrd.brand +
+                  " " +
+                  wrapDetailTrd.detailTrd.product
+                }
                 className="bg-background font-semibold"
               />
             </div>
@@ -89,8 +125,12 @@ export default function FormProductPage({
               <Input
                 id="idUser"
                 placeholder="Masukan User ID..."
-                value={wrapDetailTrd.detailTrd.userId}
-                onChange={(e)=> handlerUserId(e.target.value)}
+                value={
+                  wrapDetailTrd.detailTrd.userId
+                    ? wrapDetailTrd.detailTrd.userId
+                    : ""
+                }
+                onChange={(e)=> handleUserId(e.target.value)}
                 className="bg-background focus-visible:ring-primary"
               />
             </div>
@@ -104,8 +144,14 @@ export default function FormProductPage({
               </Label>
               <Input
                 id="serverUser"
-                value={wrapDetailTrd.detailTrd.serverId}
-                onChange={(e)=> handlerServerId(e.target.value)}
+                value={
+                  wrapDetailTrd.detailTrd.serverId
+                    ? wrapDetailTrd.detailTrd.serverId
+                    : ""
+                }
+                onChange={(e) =>
+                  handleServerId(e.target.value)
+                }
                 placeholder="Masukan ID Server..."
                 className="bg-background focus-visible:ring-primary"
               />
@@ -118,7 +164,10 @@ export default function FormProductPage({
                 <p>Metode Pembayaran</p>
                 <span className="text-red-600">*</span>
               </Label>
-              <Select>
+              <Select
+                value={wrapDetailTrd.detailTrd.payment}
+                onValueChange={handlePayment}
+              >
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="Pilih Metode Pembayaran" />
                 </SelectTrigger>
@@ -147,7 +196,9 @@ export default function FormProductPage({
                 <span>
                   <DynamicIcon
                     className={`${
-                      validVoucher ? "text-green-500 visible" : "invisible"
+                      wrapDetailTrd.detailTrd.voucher === testVoucher
+                        ? "text-green-500 visible"
+                        : "invisible"
                     }`}
                     name="check"
                     size={15}
@@ -157,39 +208,20 @@ export default function FormProductPage({
               <Input
                 id="voucher"
                 type="text"
-                value={voucher}
-                onChange={(e) => setVoucher(e.target.value)}
+                value={
+                  wrapDetailTrd.detailTrd.voucher
+                    ? wrapDetailTrd.detailTrd.voucher
+                    : ""
+                }
+                onChange={(e) =>
+                  handleVoucher(e.target.value)
+                }
                 placeholder="Masukan Voucher..."
                 className={"bg-background focus-visible:ring-primary"}
               />
             </div>
           </div>
 
-          <div className="grid grid-cols-5 gap-4">
-            <div className="col-span-2">
-              <Label htmlFor="emailUser" className="mb-2 block font-medium">
-                Email (optional)
-              </Label>
-              <Input
-                id="emailUser"
-                type="email"
-                placeholder="Masukan Email..."
-                className="bg-background focus-visible:ring-primary"
-              />
-            </div>
-            <div className="col-span-3">
-              <Label htmlFor="emailUser" className="mb-2 block font-medium">
-                Pesan (optional)
-              </Label>
-              <Input
-                id="emailUser"
-                type="text"
-                placeholder="Tinggalkan pesan..."
-                className="bg-background focus-visible:ring-primary"
-              />
-            </div>
-          </div>
-          <div>
             <div className="flex items-center justify-end gap-2">
               <button
                 onClick={() => setModal.setter(true)}
@@ -198,7 +230,6 @@ export default function FormProductPage({
                 Bayar Sekarang
               </button>
             </div>
-          </div>
         </div>
       ) : (
         <div className="flex flex-col gap-3 items-center justify-center p-8 text-muted-foreground border-2 border-solid border-border rounded-lg bg-muted/10">

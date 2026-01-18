@@ -10,6 +10,7 @@ export const initTrdSchema = z.object({
   payment: z.string().optional(),
   voucher: z.string().optional(),
   email: z.email().optional(),
+  message: z.string().optional(),
 });
 
 const addIDSchema = z.object({
@@ -52,17 +53,21 @@ const addVoucherSchema = z.object({
   payload: z.string(),
 });
 
-const addEmailSchema = z.object({
-  key: z.literal("ADD_EMAIL"),
-  payload: z.email(),
-});
+// const addEmailSchema = z.object({
+//   key: z.literal("ADD_EMAIL"),
+//   payload: z.email(),
+// });
 
-export const validUserIdSchema = z.coerce.number().positive()
+// const addMsgSchema = z.object({
+//   key: z.literal("ADD_MSG"),
+//   payload: z.string().max(1),
+// });
+
+export const validUserIdSchema = z.coerce.number().positive();
 export const validServerIdSchema = z.coerce.number().positive();
 export const validPaymentSchema = z.enum(["bank", "qris", "gopay", "dana"]);
-export const validVoucherSchema = z.string()
-export const validEmailSchema = z.email()
-export const validMsgSchema = z.string().max(50)
+export const validVoucherSchema = z.string();       
+export const validMsgSchema = z.string().max(1);
 
 const outputTrdSchema = z.object({
   id: z.number(),
@@ -73,8 +78,7 @@ const outputTrdSchema = z.object({
   serverId: validServerIdSchema,
   payment: validPaymentSchema,
   voucher: validVoucherSchema,
-  email: validEmailSchema,
-  message : validMsgSchema
+  message: validMsgSchema,
 });
 
 export const actionTrdSchema = z.discriminatedUnion("key", [
@@ -86,13 +90,10 @@ export const actionTrdSchema = z.discriminatedUnion("key", [
   addServerIdSchema,
   addPaymentSchema,
   addVoucherSchema,
-  addEmailSchema,
 ]);
 
-export type validPaymentType = z.infer<typeof validPaymentSchema>
-export type validVoucherType = z.infer<typeof validVoucherSchema>
-export type validEmailType = z.infer<typeof validEmailSchema>
-export type validMsgType = z.infer<typeof validMsgSchema>
+export type validPaymentType = z.infer<typeof validPaymentSchema>;
+export type validVoucherType = z.infer<typeof validVoucherSchema>;
 export type initTransactionType = z.infer<typeof initTrdSchema>;
 export type outputTransactionType = z.infer<typeof outputTrdSchema>;
 export type actionTrdType = z.infer<typeof actionTrdSchema>;
