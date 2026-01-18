@@ -3,10 +3,12 @@ import { useEffect, useReducer, useState } from "react";
 import { productType } from "@/schema/ProductItem.schemas";
 import ProductColletion from "@/api/ProductCollections.json";
 import { notFound } from "next/navigation";
+import { Spinner } from "@/components/ui/spinner";
 import { initTransactionType, actionTrdType } from "@/schema/form.schemas";
 import DesProductPage from "@/components/product-page/Des.ProductPage";
 import ContProductPage from "@/components/product-page/Cont.ProductPage";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 import {
   Dialog,
   DialogClose,
@@ -26,13 +28,31 @@ export default function PageProduct({
 }) {
   const datas = ProductColletion as productType[];
   const [modalStatus, setModalStatus] = useState<boolean>(false);
+  const [modalLoad, setModalLoad] = useState<boolean>(false);
 
   const getIndex = datas.findIndex((data) => data.name === item.category);
+
+  // handle modal loading
+  let modalTime: NodeJS.Timeout | undefined;
+  function handleConfirm() {
+    setModalLoad(true)
+    modalTime = globalThis.setTimeout(() => {
+      setModalLoad(false);
+    }, 3000);
+  }
+  useEffect(()=>{
+    if(modalStatus){
+      handleConfirm()
+    }
+    else{
+      clearTimeout(modalTime)
+    }
+  },[modalStatus])
+
   const handleModal = {
     status: modalStatus,
     setter: setModalStatus,
   };
-
   // validate category
   if (getIndex === -1) {
     return notFound();
@@ -74,7 +94,10 @@ export default function PageProduct({
       case "ADD_PRICE":
         return { ...state, price: action.payload };
       case "ADD_DISCOUNT":
-        return {...state, discount : state.price ? (action.payload / 100) * state.price : 0}
+        return {
+          ...state,
+          discount: state.price ? (action.payload / 100) * state.price : 0,
+        };
       case "ADD_USERID":
         return { ...state, userId: action.payload };
       case "ADD_SERVERID":
@@ -83,6 +106,20 @@ export default function PageProduct({
         return { ...state, payment: action.payload };
       case "ADD_VOUCHER":
         return { ...state, voucher: action.payload };
+      case "RESET_REDUC":
+        if (action.payload === "sprkey") {
+          return (state = {
+            ...state,
+            id: undefined,
+            product: "",
+            price: 0,
+            userId: undefined,
+            serverId: undefined,
+            payment: "",
+            voucher: "",
+            discount: 0,
+          });
+        }
       default:
         return state;
     }
@@ -118,7 +155,12 @@ export default function PageProduct({
   }, [wrapDetailTrd.detailTrd.id]);
 
   const discountActive = wrapDetailTrd.detailTrd.discount !== 0 ? true : false;
-  const finalPrice = wrapDetailTrd.detailTrd.price ? wrapDetailTrd.detailTrd.price - (wrapDetailTrd.detailTrd.discount ? wrapDetailTrd.detailTrd.discount : 0) : 0;
+  const finalPrice = wrapDetailTrd.detailTrd.price
+    ? wrapDetailTrd.detailTrd.price -
+      (wrapDetailTrd.detailTrd.discount ? wrapDetailTrd.detailTrd.discount : 0)
+    : 0;
+
+
   return (
     <div className="grid gap-5 mx-5 h-100 grid-cols-1 md:grid-cols-5">
       <DesProductPage brandInfo={wrapDetailTrd.detailTrd.brand} />
@@ -136,22 +178,63 @@ export default function PageProduct({
                 tolong periksa kembali data yang anda masukan
               </DialogDescription>
             </DialogHeader>
-            <Separator/>
+            <Separator />
             <div className="grid gap-4">
-              <p>Product : {wrapDetailTrd.detailTrd.brand + " " + wrapDetailTrd.detailTrd.product}</p>
               <p>
-                Harga : <span className={discountActive ? "line-through" : ""}>Rp.{wrapDetailTrd.detailTrd.price?.toLocaleString()}</span>
-                <span className={discountActive ? "inline": "hidden"}>Rp.{finalPrice.toLocaleString()}</span>
+                Product :{" "}
+                {wrapDetailTrd.detailTrd.brand +
+                  " " +
+                  wrapDetailTrd.detailTrd.product}
               </p>
-              <p>Detail ID : {wrapDetailTrd.detailTrd.userId+ "(" + wrapDetailTrd.detailTrd.serverId  +")"}</p>
-              <p>Metode Pembayaran :  {wrapDetailTrd.detailTrd.payment}</p>
+              <p>
+                Harga :{" "}
+                <span
+                  className={`me-1 ${discountActive ? "line-through text-sm" : ""}`}
+                >
+                  Rp.{wrapDetailTrd.detailTrd.price?.toLocaleString()}
+                </span>
+                <span className={discountActive ? "inline" : "hidden"}>
+                  Rp.{finalPrice.toLocaleString()}
+                </span>
+              </p>
+              <p>
+                Detail ID :{" "}
+                {wrapDetailTrd.detailTrd.userId +
+                  "(" +
+                  wrapDetailTrd.detailTrd.serverId +
+                  ")"}
+              </p>
+              <p>Metode Pembayaran : {wrapDetailTrd.detailTrd.payment}</p>
             </div>
-            <Separator/>
+            <Separator />
             <DialogFooter>
               <DialogClose asChild>
                 <Button variant="outline">Cancel</Button>
               </DialogClose>
-              <Button type="submit">Save changes</Button>
+              <Button
+                variant={"default"}
+                disabled={modalLoad}
+                type="submit"
+                onClick={() => {
+                  wrapDetailTrd.setDetailTrd({
+                    key: "RESET_REDUC",
+                    payload: "sprkey",
+                  });
+                  handleModal.setter(false);
+                  toast.success("Transaksi berhasil",{
+                    position: "top-center"
+                  });
+                }}
+              >
+                {modalLoad ? (
+                  <>
+                    <Spinner className="size-6 text-blue-500"></Spinner>{" "}
+                    Saving...{" "}
+                  </>
+                ) : (
+                  "Confirm"
+                )}
+              </Button>
             </DialogFooter>
           </DialogContent>
         </form>

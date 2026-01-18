@@ -57,6 +57,11 @@ const addVoucherSchema = z.object({
   payload: z.string(),
 });
 
+const resetReducerSchema = z.object({
+  key : z.literal("RESET_REDUC"),
+  payload : z.string(),
+})
+
 export const validUserIdSchema = z.coerce.number().positive();
 export const validServerIdSchema = z.coerce.number().positive();
 export const validPaymentSchema = z.enum(["bank", "qris", "gopay", "dana"]);
@@ -83,6 +88,7 @@ export const actionTrdSchema = z.discriminatedUnion("key", [
   addServerIdSchema,
   addPaymentSchema,
   addVoucherSchema,
+  resetReducerSchema,
 ]);
 
 export type validPaymentType = z.infer<typeof validPaymentSchema>;

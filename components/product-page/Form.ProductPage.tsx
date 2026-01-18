@@ -1,4 +1,3 @@
-import { z } from "zod";
 import { productDataType } from "@/schema/ProductItem.schemas";
 import {
   validPaymentSchema,
@@ -9,7 +8,6 @@ import {
 import { DynamicIcon } from "lucide-react/dynamic";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Toaster } from "@/components/ui/sonner";
 import {
   Select,
   SelectContent,
@@ -19,12 +17,10 @@ import {
   SelectLabel,
   SelectGroup,
 } from "@/components/ui/select";
-import {
-  modalType,
-  wrapperDetailTrdType,
-} from "@/schema/wrapper.schemas";
-import { useEffect, useState } from "react";
+import { modalType, wrapperDetailTrdType } from "@/schema/wrapper.schemas";
+import { useEffect, useRef, useState } from "react";
 import { useImmer } from "use-immer";
+import { toast } from "sonner";
 
 export default function FormProductPage({
   datas,
@@ -36,93 +32,130 @@ export default function FormProductPage({
   wrapDetailTrd: wrapperDetailTrdType;
 }) {
   const initError = {
-    userId : "",
-    serverId : "",
-    paymentId : "",
-  }
+    userId: "",
+    serverId: "",
+    paymentId: "",
+  };
   const testVoucher = "0909";
   const filtered = datas.find((data) => data.id === wrapDetailTrd.detailTrd.id);
-  const [voucherValid,setVouchervalid] = useState<boolean>(false)
-  const [errors,setErrors] = useImmer(initError)
+  const [voucherValid, setVouchervalid] = useState<boolean>(false);
+  const [errors, setErrors] = useImmer(initError);
 
-  function handleUserId(e : Number | string){
-    const res = validUserIdSchema.safeParse(e)
-    if(!res.success){
-      return
+  //handle empty form
+  const userInput = useRef<HTMLInputElement>(null);
+  const serverInput = useRef<HTMLInputElement>(null);
+  const [paymentOpen,setPaymentOpen] = useState<boolean>(false)
+
+  function handleUserId(e: Number | string) {
+    const res = validUserIdSchema.safeParse(e);
+    if (!res.success) {
+      return;
     }
     wrapDetailTrd.setDetailTrd({
-      key : "ADD_USERID",
-      payload : res.data
+      key: "ADD_USERID",
+      payload: res.data,
+    });
+    setErrors((d)=>{
+      d.userId = ""
     })
   }
 
-  function handleServerId(e : Number | string){
-    const res = validServerIdSchema.safeParse(e)
-    if(!res.success){
-      return
+  function handleServerId(e: Number | string) {
+    const res = validServerIdSchema.safeParse(e);
+    if (!res.success) {
+      return;
     }
     wrapDetailTrd.setDetailTrd({
-      key : "ADD_SERVERID",
-      payload : res.data
+      key: "ADD_SERVERID",
+      payload: res.data,
+    });
+    setErrors((d)=>{
+      d.serverId = ""
     })
   }
 
-  function handlePayment(e : string){
-    const res = validPaymentSchema.safeParse(e)
-    if(!res.success){
-      return
+
+  function handlePayment(e: string) {
+    const res = validPaymentSchema.safeParse(e);
+    if (!res.success) {
+      return;
     }
     wrapDetailTrd.setDetailTrd({
-      key : "ADD_PAYMENT",
-      payload : res.data
-    })
+      key: "ADD_PAYMENT",
+      payload: res.data,
+    });
   }
 
-  function handleVoucher(e : string){
-    const res = validVoucherSchema.safeParse(e)
-    if(!res.success){
-      return 
+  function handleVoucher(e: string) {
+    const res = validVoucherSchema.safeParse(e);
+    if (!res.success) {
+      return;
     }
     wrapDetailTrd.setDetailTrd({
-      key : "ADD_VOUCHER",
-      payload : res.data
-    })
+      key: "ADD_VOUCHER",
+      payload: res.data,
+    });
   }
 
-  function isFilled(){
-  const userId = wrapDetailTrd.detailTrd.userId === undefined
-  const serverId = wrapDetailTrd.detailTrd.serverId === undefined
-  const payment = wrapDetailTrd.detailTrd.payment === ""
-    if(userId){
-      return (
-        setErrors((d)=>{
-          d.userId = "maaf UserID Tidak Boleh Kosong" 
+  function isFilled() {
+    const userId = wrapDetailTrd.detailTrd.userId === undefined;
+    const serverId = wrapDetailTrd.detailTrd.serverId === undefined;
+    const payment = wrapDetailTrd.detailTrd.payment === "";
+    if (userId) {
+      return setErrors((d) => {
+        d.userId = "Maaf UserID Tidak Boleh Kosong";
+        toast.error(d.userId,{
+          position : "top-center",
         })
-        
-      )
+      });
     }
-    if(serverId){
-      return setErrors((d)=> {
-        d.serverId = "maaf SeverID Tidak Boleh Kosong"
-      })
+    if (serverId) {
+      return setErrors((d) => {
+        d.serverId = "Maaf ServerID Tidak Boleh Kosong";
+        toast.error(d.serverId,{
+          position : "top-center",
+        })
+      });
     }
-    if(payment){
-      return setErrors((d)=>{
-        d.paymentId = "tolong pilih salah 1 metode pembayaran"
-      })
-    } else{
-      return setModal.setter(true)
+    if (payment) {
+      return setErrors((d) => {
+        d.paymentId = "Tolong Pilih Salah Satu";
+        toast.error(d.paymentId,{
+          position : "top-center",
+        })
+      });
+    } else {
+      return setModal.setter(true);
     }
   }
+
+  // use Effect
+  useEffect(() => {
+    const val = wrapDetailTrd.detailTrd.voucher === testVoucher;
+    setVouchervalid(val);
+    wrapDetailTrd.setDetailTrd({
+      key: "ADD_DISCOUNT",
+      payload: val ? 10 : 0,
+    });
+  }, [wrapDetailTrd.detailTrd.voucher, wrapDetailTrd.detailTrd.price]);
 
   useEffect(()=>{
-  const val = wrapDetailTrd.detailTrd.voucher === testVoucher;
-  setVouchervalid(val);
-  wrapDetailTrd.setDetailTrd({
-    key: "ADD_DISCOUNT",
-    payload: val ? 10 : 0,
-  });
-  },[wrapDetailTrd.detailTrd.voucher,wrapDetailTrd.detailTrd.price])
+    if(errors.userId){
+      userInput.current?.focus()
+    }
+  },[errors.userId])
+
+  useEffect(()=>{
+    if(errors.serverId){
+      serverInput.current?.focus()
+    }
+  },[errors.serverId])
+
+  useEffect(() =>{
+    if(errors.paymentId){
+      setPaymentOpen(true)
+    }
+  },[errors.paymentId])
 
   return (
     <div className="mt-4">
@@ -160,12 +193,21 @@ export default function FormProductPage({
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <Label htmlFor="idUser" className="mb-2 flex font-medium gap-1">
-                <p>User ID</p>
-                <span className="text-red-600">*</span>
+              <Label
+                htmlFor="idUser"
+                className="mb-2 flex font-medium justify-between gap-1"
+              >
+                <span className="flex gap-1">
+                  <p>User ID</p>
+                  <span className="text-red-600">*</span>
+                </span>
+                <span className="text-red-600 text-[10px]">
+                  {errors.userId}
+                </span>
               </Label>
               <Input
                 id="idUser"
+                ref={userInput}
                 placeholder="Masukan User ID..."
                 value={
                   wrapDetailTrd.detailTrd.userId
@@ -178,14 +220,20 @@ export default function FormProductPage({
             </div>
             <div>
               <Label
-                htmlFor="serverUser"
-                className="mb-2 flex font-medium gap-1"
+                htmlFor="idUser"
+                className="mb-2 flex font-medium justify-between gap-1"
               >
-                <p>Server ID</p>
-                <span className="text-red-600">*</span>
+                <span className="flex gap-1">
+                  <p>Server ID</p>
+                  <span className="text-red-600">*</span>
+                </span>
+                <span className="text-red-600 text-[10px]">
+                  {errors.serverId}
+                </span>
               </Label>
               <Input
                 id="serverUser"
+                ref={serverInput}
                 value={
                   wrapDetailTrd.detailTrd.serverId
                     ? wrapDetailTrd.detailTrd.serverId
@@ -193,18 +241,28 @@ export default function FormProductPage({
                 }
                 onChange={(e) => handleServerId(e.target.value)}
                 placeholder="Masukan ID Server..."
-                className="bg-background focus-visible:ring-primary"
+                className={`bg-background focus  ${errors.serverId !== "" ? "focus-visible:ring-red-500" : "focus-visible:ring-primary"}`}
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <Label htmlFor="idUser" className="mb-2 flex font-medium gap-1">
-                <p>Metode Pembayaran</p>
-                <span className="text-red-600">*</span>
+              <Label
+                htmlFor="idUser"
+                className="mb-2 flex font-medium justify-between gap-1"
+              >
+                <span className="flex gap-1">
+                  <p>Metode Pembayaran</p>
+                  <span className="text-red-600">*</span>
+                </span>
+                <span className="text-red-600 text-[10px]">
+                  {errors.paymentId}
+                </span>
               </Label>
               <Select
+                open={paymentOpen}
+                onOpenChange={setPaymentOpen}
                 value={wrapDetailTrd.detailTrd.payment}
                 onValueChange={handlePayment}
               >
@@ -213,7 +271,15 @@ export default function FormProductPage({
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
-                    <SelectLabel>Metode Pembayaran</SelectLabel>
+                    <SelectLabel className="mb-2 flex font-medium justify-between gap-1">
+                      <span className="flex gap-1">
+                        <p>Metode Pembayaran</p>
+                        <span className="text-red-600">*</span>
+                      </span>
+                      <span className="text-red-600 text-[10px]">
+                        {errors.paymentId}
+                      </span>
+                    </SelectLabel>
                     <SelectItem className="lowercase" value="bank">
                       Bank Transfer
                     </SelectItem>

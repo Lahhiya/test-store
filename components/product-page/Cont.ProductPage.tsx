@@ -2,7 +2,6 @@
 
 import { productDataType } from "@/schema/ProductItem.schemas";
 import { modalType, wrapperDetailTrdType } from "@/schema/wrapper.schemas";
-import { useState } from "react";
 import { cn } from "@/lib/utils";
 import FormProductPage from "./Form.ProductPage";
 
@@ -15,13 +14,11 @@ export default function ContProductPage({
   setModal: modalType;
   wrapDetailTrd:wrapperDetailTrdType
 }) {
-  const [selected, setSelected] = useState<number>(0);
   function handleSelect(id:number){
     wrapDetailTrd.setDetailTrd({ key: "ADD_ID", payload: id });
     wrapDetailTrd.setDetailTrd({ key : "ADD_DISCOUNT", payload : 0})
   }
 
-  const isSelected = wrapDetailTrd.detailTrd.id === selected
   return (
     <div className="flex flex-col gap-4 col-span-3 bg-card border border-border rounded-xl p-6 shadow-sm">
       <h2 className="text-3xl uppercase font-semibold">{wrapDetailTrd.detailTrd.brand}</h2>
@@ -36,7 +33,7 @@ export default function ContProductPage({
               onClick={() => {handleSelect(data.id)}}
               className={cn(
                 "flex flex-col items-center justify-center h-14 w-full text-xs border rounded-lg p-2 transition-all duration-200 cursor-pointer",
-                isSelected
+                wrapDetailTrd.detailTrd.id === data.id
                   ? "bg-primary text-primary-foreground border-primary ring-2 ring-primary/20 shadow-md transform scale-105"
                   : "bg-background border-input hover:border-primary/50 hover:bg-accent hover:text-accent-foreground"
               )}
