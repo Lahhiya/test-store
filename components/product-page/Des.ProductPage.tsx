@@ -23,7 +23,7 @@ export default function DesProductPage({brandInfo} : {brandInfo : wrapBrandInfoT
               <h2 className="text-2xl uppercase font-semibold">
                 {brandInfo.name}
               </h2>
-              <p className="uppercase group-hover:underline text-xl font-medium">
+              <p className="lowercase group-hover:underline text-lg font-medium">
                 {brandInfo.category}
               </p>
             </Link>

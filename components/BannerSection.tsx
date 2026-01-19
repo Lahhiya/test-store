@@ -10,7 +10,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 export default function BannerSection() {
   const corouselItems = [
@@ -48,8 +47,8 @@ export default function BannerSection() {
   ]);
 
   return (
-    <section className="flex justify-center items-center h-52 w-full px-5">
-      <div className="flex flex-col justify-center items-center h-full py-5 w-full">
+    <section className="banner-section">
+      <div className="banner-container">
         <Carousel
           className="flex justify-center items-center w-full"
           opts={{
@@ -57,19 +56,16 @@ export default function BannerSection() {
           }}
           plugins={plugin.current}
         >
-          <CarouselContent className="flex h-full">
+          <CarouselContent className="flex">
             {corouselItems.map((item) => {
               return (
-                <CarouselItem
-                  key={item.id}
-                  className="flex justify-center items-center w-[80%]"
-                >
+                <CarouselItem key={item.id} className="banner-corousel">
                   <Image
                     src={`/banners/${item.image}.jpg`}
                     alt="banner"
                     width={1280}
                     height={720}
-                    className="w-2/3 h-52 rounded-xl shadow shadow-slate-800 object-cover"
+                    className="banner-item"
                   ></Image>
                 </CarouselItem>
               );

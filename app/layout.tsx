@@ -39,7 +39,7 @@ export default function RootLayout({
           <Header />
         </div>
         <div className="flex flex-1 overflow-hidden">
-          <aside className="w-[80px] shrink-0 bg-slate-100 shadow border-r border-slate-200 z-40">
+          <aside className="w-[80px] hidden md:block shrink-0 bg-slate-100 shadow border-r border-slate-200 z-40">
             <SideBar />
           </aside>
           <main className="flex-1 overflow-y-auto relative p-4">

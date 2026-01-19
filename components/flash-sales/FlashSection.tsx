@@ -23,8 +23,6 @@ export default function FlashSection() {
     }),
   ]);
 
-
-
   return (
     <section className="bg-slate-100 border border-slate-300 rounded-lg p-5 h-auto">
       <div className="flex flex-col justify-center">

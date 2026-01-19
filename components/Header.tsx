@@ -14,15 +14,12 @@ export default function Header() {
   const [isDark,setIsDark] = useState(false);
   const iconSize = 30;
   return (
-    <header className="flex justify-between w-full items-center px-5 py-3 shadow shadow-slate-300 bg-slate-100 z-50">
-      <Link href={"/"} className="flex items-center justify-center gap-3 w-1/4">
-        <Image src={logo} alt="logo" width={50} height={50} />
-        <h1 className="text-4xl font-bold uppercase">Test Store</h1>
+    <header className="header-section">
+      <Link href={"/"} className="header-brand">
+        <Image src={logo} alt="logo" className="w-10 h-10 md:w-12 md:h-12" />
+        <h1 className="text-lg font-bold uppercase">Test Store</h1>
       </Link>
-      <div
-        className={`flex items-center justify-end gap-3 transition-all ${
-          search ? "w-2/4" : "w-auto"
-        }`}>
+      <div className={`header-container ${search ? "w-1/2" : "w-auto"}`}>
         <ButtonGroup className="h-full w-full">
           {search ? (
             <>
