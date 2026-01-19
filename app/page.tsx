@@ -14,7 +14,8 @@ export default function Home() {
         return {
           id: item.id,
           brand: item.brand,
-          name: item.product,
+          category: item.category,
+          product : item.product,
           sold: item.sold,
           image: item.image,
         };

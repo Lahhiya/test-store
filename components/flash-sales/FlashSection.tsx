@@ -22,6 +22,9 @@ export default function FlashSection() {
       stopOnInteraction: false,
     }),
   ]);
+
+
+
   return (
     <section className="bg-slate-100 border border-slate-300 rounded-lg p-5 h-auto">
       <div className="flex flex-col justify-center">
@@ -39,7 +42,7 @@ export default function FlashSection() {
             plugins={plugin.current}
           >
             <CarouselContent className="-ml-4">
-              {productItem.map((item: FlashItemTypes) => {
+              {productItem.map((item) => {
                 return (
                   <CarouselItem
                     key={item.id}

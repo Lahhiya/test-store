@@ -20,6 +20,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
+import { wrapBrandInfoType } from "@/schema/wrapper.schemas";
 
 export default function PageProduct({
   item,
@@ -65,7 +66,7 @@ export default function PageProduct({
     return notFound();
   }
 
-  const indeticalData = getData.filter((data) => data.slug === item.slug);
+  const ideticalData = getData.filter((data) => data.slug === item.slug);
 
   // init detail transaction
   const initDetailTrd: initTransactionType = {
@@ -131,15 +132,17 @@ export default function PageProduct({
     detailTrd,
     setDetailTrd,
   };
+
+
   useEffect(() => {
     wrapDetailTrd.setDetailTrd({
       key: "ADD_BRAND",
-      payload: indeticalData[0].brand,
+      payload: ideticalData[0].brand,
     });
   }, []);
 
   useEffect(() => {
-    const aData = indeticalData.find(
+    const aData = ideticalData.find(
       (data) => data.id === wrapDetailTrd.detailTrd.id,
     );
     if (aData) {
@@ -160,12 +163,18 @@ export default function PageProduct({
       (wrapDetailTrd.detailTrd.discount ? wrapDetailTrd.detailTrd.discount : 0)
     : 0;
 
+  const WrapbrandInfo : wrapBrandInfoType = {
+    name : ideticalData[0].brand,
+    category : ideticalData[0].category,
+    image : ideticalData[0].image
+  }
 
   return (
     <div className="grid gap-5 mx-5 h-100 grid-cols-1 md:grid-cols-5">
-      <DesProductPage brandInfo={wrapDetailTrd.detailTrd.brand} />
+      <DesProductPage brandInfo={WrapbrandInfo} />
       <ContProductPage
-        datas={indeticalData}
+        brandInfo={WrapbrandInfo}
+        datas={ideticalData}
         setModal={handleModal}
         wrapDetailTrd={wrapDetailTrd}
       />
@@ -221,8 +230,8 @@ export default function PageProduct({
                     payload: "sprkey",
                   });
                   handleModal.setter(false);
-                  toast.success("Transaksi berhasil",{
-                    position: "top-center"
+                  toast.success("Transaksi berhasil", {
+                    position: "top-center",
                   });
                 }}
               >

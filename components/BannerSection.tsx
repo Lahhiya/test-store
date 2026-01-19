@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useState, useRef } from "react";
-import banner from "@/assets/dummy/banner.jpg";
 import Autoplay from "embla-carousel-autoplay";
 import {
   Carousel,
@@ -11,28 +10,33 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 export default function BannerSection() {
   const corouselItems = [
     {
       id: 1,
-      image: banner,
+      image: "banner-1",
     },
     {
       id: 2,
-      image: banner,
+      image: "banner-2",
     },
     {
       id: 3,
-      image: banner,
+      image: "banner-3",
     },
     {
       id: 4,
-      image: banner,
+      image: "banner-4",
     },
     {
       id: 5,
-      image: banner,
+      image: "banner-5",
+    },
+    {
+      id: 6,
+      image: "banner-6",
     },
   ];
   const plugin = useRef([
@@ -61,8 +65,10 @@ export default function BannerSection() {
                   className="flex justify-center items-center w-[80%]"
                 >
                   <Image
-                    src={item.image}
+                    src={`/banners/${item.image}.jpg`}
                     alt="banner"
+                    width={1280}
+                    height={720}
                     className="w-2/3 h-52 rounded-xl shadow shadow-slate-800 object-cover"
                   ></Image>
                 </CarouselItem>

@@ -10,7 +10,7 @@
         "category": "game",
         "price": 30000,
         "sold": 150,
-        "image": "banner",
+        "image": "mole",
         "instant": true
       },
       {
@@ -21,7 +21,7 @@
         "category": "game",
         "price": 20000,
         "sold": 80,
-        "image": "banner",
+        "image": "mole",
         "instant": true
       },
       {
@@ -32,7 +32,7 @@
         "category": "game",
         "price": 40000,
         "sold": 60,
-        "image": "banner",
+        "image": "mole",
         "instant": true
       },
       {
@@ -43,7 +43,7 @@
         "category": "game",
         "price": 60000,
         "sold": 45,
-        "image": "banner",
+        "image": "mole",
         "instant": true
       },
       {
@@ -54,7 +54,7 @@
         "category": "game",
         "price": 150000,
         "sold": 20,
-        "image": "banner",
+        "image": "mole",
         "instant": false
       },
       {
@@ -65,7 +65,7 @@
         "category": "game",
         "price": 15000,
         "sold": 200,
-        "image": "banner",
+        "image": "pubgm",
         "instant": true
       },
       {
@@ -76,7 +76,7 @@
         "category": "game",
         "price": 75000,
         "sold": 120,
-        "image": "banner",
+        "image": "pubgm",
         "instant": true
       },
       {
@@ -87,7 +87,7 @@
         "category": "game",
         "price": 150000,
         "sold": 90,
-        "image": "banner",
+        "image": "pubgm",
         "instant": true
       },
       {
@@ -98,7 +98,7 @@
         "category": "game",
         "price": 150000,
         "sold": 300,
-        "image": "banner",
+        "image": "pubgm",
         "instant": false
       },
       {
@@ -109,7 +109,7 @@
         "category": "game",
         "price": 350000,
         "sold": 50,
-        "image": "banner",
+        "image": "pubgm",
         "instant": false
       },
       {
@@ -120,7 +120,7 @@
         "category": "game",
         "price": 8000,
         "sold": 500,
-        "image": "banner",
+        "image": "efef",
         "instant": true
       },
       {
@@ -131,7 +131,7 @@
         "category": "game",
         "price": 20000,
         "sold": 400,
-        "image": "banner",
+        "image": "efef",
         "instant": true
       },
       {
@@ -142,7 +142,7 @@
         "category": "game",
         "price": 120000,
         "sold": 100,
-        "image": "banner",
+        "image": "efef",
         "instant": true
       },
       {
@@ -153,7 +153,7 @@
         "category": "game",
         "price": 30000,
         "sold": 250,
-        "image": "banner",
+        "image": "efef",
         "instant": true
       },
       {
@@ -164,7 +164,7 @@
         "category": "game",
         "price": 50000,
         "sold": 180,
-        "image": "banner",
+        "image": "efef",
         "instant": true
       },
       {
@@ -175,7 +175,7 @@
         "category": "game",
         "price": 52000,
         "sold": 310,
-        "image": "banner",
+        "image": "valo",
         "instant": true
       },
       {
@@ -186,7 +186,7 @@
         "category": "game",
         "price": 105000,
         "sold": 210,
-        "image": "banner",
+        "image": "valo",
         "instant": true
       },
       {
@@ -197,7 +197,7 @@
         "category": "game",
         "price": 210000,
         "sold": 155,
-        "image": "banner",
+        "image": "valo",
         "instant": true
       },
       {
@@ -208,7 +208,7 @@
         "category": "game",
         "price": 360000,
         "sold": 85,
-        "image": "banner",
+        "image": "valo",
         "instant": true
       },
       {
@@ -219,7 +219,7 @@
         "category": "game",
         "price": 520000,
         "sold": 42,
-        "image": "banner",
+        "image": "valo",
         "instant": false
       },
       {
@@ -230,7 +230,7 @@
         "category": "game",
         "price": 79000,
         "sold": 600,
-        "image": "banner",
+        "image": "gi",
         "instant": true
       },
       {
@@ -241,7 +241,7 @@
         "category": "game",
         "price": 16000,
         "sold": 100,
-        "image": "banner",
+        "image": "gi",
         "instant": true
       },
       {
@@ -252,7 +252,7 @@
         "category": "game",
         "price": 79000,
         "sold": 90,
-        "image": "banner",
+        "image": "gi",
         "instant": true
       },
       {
@@ -263,7 +263,7 @@
         "category": "game",
         "price": 249000,
         "sold": 50,
-        "image": "banner",
+        "image": "gi",
         "instant": true
       },
       {
@@ -274,7 +274,7 @@
         "category": "game",
         "price": 479000,
         "sold": 30,
-        "image": "banner",
+        "image": "gi",
         "instant": true
       }
     ]
@@ -290,7 +290,7 @@
         "category": "ewallet",
         "price": 21500,
         "sold": 1000,
-        "image": "banner",
+        "image": "dana",
         "paylater": true
       },
       {
@@ -301,7 +301,7 @@
         "category": "ewallet",
         "price": 51500,
         "sold": 800,
-        "image": "banner",
+        "image": "dana",
         "paylater": true
       },
       {
@@ -312,7 +312,7 @@
         "category": "ewallet",
         "price": 101500,
         "sold": 500,
-        "image": "banner",
+        "image": "dana",
         "paylater": true
       },
       {
@@ -323,7 +323,7 @@
         "category": "ewallet",
         "price": 201500,
         "sold": 200,
-        "image": "banner",
+        "image": "dana",
         "paylater": true
       },
       {
@@ -334,7 +334,7 @@
         "category": "ewallet",
         "price": 501500,
         "sold": 100,
-        "image": "banner",
+        "image": "dana",
         "paylater": false
       },
       {
@@ -345,7 +345,7 @@
         "category": "ewallet",
         "price": 22000,
         "sold": 700,
-        "image": "banner",
+        "image": "ovo",
         "paylater": true
       },
       {
@@ -356,7 +356,7 @@
         "category": "ewallet",
         "price": 52000,
         "sold": 600,
-        "image": "banner",
+        "image": "ovo",
         "paylater": true
       },
       {
@@ -367,7 +367,7 @@
         "category": "ewallet",
         "price": 102000,
         "sold": 400,
-        "image": "banner",
+        "image": "ovo",
         "paylater": true
       },
       {
@@ -378,7 +378,7 @@
         "category": "ewallet",
         "price": 202000,
         "sold": 150,
-        "image": "banner",
+        "image": "ovo",
         "paylater": true
       },
       {
@@ -389,7 +389,7 @@
         "category": "ewallet",
         "price": 302000,
         "sold": 80,
-        "image": "banner",
+        "image": "ovo",
         "paylater": true
       },
       {
@@ -400,7 +400,7 @@
         "category": "ewallet",
         "price": 12000,
         "sold": 900,
-        "image": "banner",
+        "image": "gopay",
         "paylater": true
       },
       {
@@ -411,7 +411,7 @@
         "category": "ewallet",
         "price": 27000,
         "sold": 750,
-        "image": "banner",
+        "image": "gopay",
         "paylater": true
       },
       {
@@ -422,7 +422,7 @@
         "category": "ewallet",
         "price": 52000,
         "sold": 600,
-        "image": "banner",
+        "image": "gopay",
         "paylater": true
       },
       {
@@ -433,7 +433,7 @@
         "category": "ewallet",
         "price": 102000,
         "sold": 300,
-        "image": "banner",
+        "image": "gopay",
         "paylater": true
       },
       {
@@ -444,7 +444,7 @@
         "category": "ewallet",
         "price": 252000,
         "sold": 100,
-        "image": "banner",
+        "image": "gopay",
         "paylater": false
       },
       {
@@ -455,7 +455,7 @@
         "category": "ewallet",
         "price": 11000,
         "sold": 1200,
-        "image": "banner",
+        "image": "spay",
         "paylater": true
       },
       {
@@ -466,7 +466,7 @@
         "category": "ewallet",
         "price": 21000,
         "sold": 900,
-        "image": "banner",
+        "image": "spay",
         "paylater": true
       },
       {
@@ -477,7 +477,7 @@
         "category": "ewallet",
         "price": 51000,
         "sold": 700,
-        "image": "banner",
+        "image": "spay",
         "paylater": true
       },
       {
@@ -488,7 +488,7 @@
         "category": "ewallet",
         "price": 101000,
         "sold": 400,
-        "image": "banner",
+        "image": "spay",
         "paylater": true
       },
       {
@@ -499,7 +499,7 @@
         "category": "ewallet",
         "price": 201000,
         "sold": 150,
-        "image": "banner",
+        "image": "spay",
         "paylater": true
       },
       {
@@ -510,7 +510,7 @@
         "category": "ewallet",
         "price": 11500,
         "sold": 300,
-        "image": "banner",
+        "image": "link",
         "paylater": false
       },
       {
@@ -521,7 +521,7 @@
         "category": "ewallet",
         "price": 26500,
         "sold": 250,
-        "image": "banner",
+        "image": "link",
         "paylater": false
       },
       {
@@ -532,7 +532,7 @@
         "category": "ewallet",
         "price": 51500,
         "sold": 200,
-        "image": "banner",
+        "image": "link",
         "paylater": false
       },
       {
@@ -543,7 +543,7 @@
         "category": "ewallet",
         "price": 101500,
         "sold": 100,
-        "image": "banner",
+        "image": "link",
         "paylater": false
       },
       {
@@ -554,7 +554,7 @@
         "category": "ewallet",
         "price": 151500,
         "sold": 50,
-        "image": "banner",
+        "image": "link",
         "paylater": false
       }
     ]

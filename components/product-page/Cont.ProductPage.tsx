@@ -4,15 +4,19 @@ import { productDataType } from "@/schema/ProductItem.schemas";
 import { modalType, wrapperDetailTrdType } from "@/schema/wrapper.schemas";
 import { cn } from "@/lib/utils";
 import FormProductPage from "./Form.ProductPage";
+import Link from "next/link";
+import { wrapBrandInfoType } from "@/schema/wrapper.schemas";
 
 export default function ContProductPage({
   datas,
   setModal,
   wrapDetailTrd,
+  brandInfo
 }: {
   datas: productDataType;
   setModal: modalType;
   wrapDetailTrd:wrapperDetailTrdType
+  brandInfo:wrapBrandInfoType
 }) {
   function handleSelect(id:number){
     wrapDetailTrd.setDetailTrd({ key: "ADD_ID", payload: id });
@@ -21,7 +25,9 @@ export default function ContProductPage({
 
   return (
     <div className="flex flex-col gap-4 col-span-3 bg-card border border-border rounded-xl p-6 shadow-sm">
-      <h2 className="text-3xl uppercase font-semibold">{wrapDetailTrd.detailTrd.brand}</h2>
+      <Link href={`/${brandInfo.category}/`}>
+        <h2 className="text-3xl uppercase font-semibold">{brandInfo.name}</h2>
+      </Link>
       <h2 className="capitalize font-semibold text-card-foreground text-lg">
         Pilih Nominal
       </h2>

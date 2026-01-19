@@ -297,16 +297,21 @@ export default function FormProductPage({
               </Select>
             </div>
             <div>
-              <Label htmlFor="voucher" className="mb-2 flex font-medium gap-1">
-                Punya Voucher?
+              <Label htmlFor="voucher" className="mb-2 flex font-medium gap-1 justify-between">
                 <span>
-                  <DynamicIcon
-                    className={`${
-                      voucherValid ? "text-green-500 visible" : "invisible"
-                    }`}
-                    name="check"
-                    size={15}
-                  />
+                  <span className="flex gap-1">
+                    Punya Voucher?
+                    <DynamicIcon
+                      className={`${
+                        voucherValid ? "text-green-500 visible" : "invisible"
+                      }`}
+                      name="check"
+                      size={15}
+                    />
+                  </span>
+                </span>
+                <span className="text-xs text-muted-foreground">
+                  test voucher(0909) = 10%
                 </span>
               </Label>
               <Input

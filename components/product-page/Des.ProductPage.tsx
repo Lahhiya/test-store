@@ -1,31 +1,40 @@
 import Image from "next/image";
-import banner from "@/assets/products/banner.webp"
 import { Badge } from "../ui/badge";
 import { Timer } from "lucide-react";
-import { History } from "lucide-react";
+import { DynamicIcon } from "lucide-react/dynamic";
 import { Separator } from "../ui/separator";
-export default function DesProductPage({brandInfo} : {brandInfo : string|undefined}) {
+import Link from "next/link";
+import { wrapBrandInfoType } from "@/schema/wrapper.schemas";
+import { check } from "zod";
+export default function DesProductPage({brandInfo} : {brandInfo : wrapBrandInfoType}) {
   return (
     <div className="w-full max-h-[500px] col-span-2 bg-card rounded-lg p-5 shadow shadow-gray-300">
       <div className="flex flex-col gap-5 items-center shadow shadow-gray-200 p-2 rounded-lg ">
-        <div className="gap-2 p-4 my-3 min-h-full flex justify-evenly w-full rounded-2xl overflow-hidden">
+        <div className="gap-2 p-4 my-3 min-h-full grid grid-cols-5 w-full rounded-2xl overflow-hidden">
           <Image
-            src={banner}
+            src={`/products/${brandInfo.image}.png`}
+            width={100}
+            height={100}
             alt="icon"
-            className="object-cover w-24 rounded-lg"
+            className="object-cover w-24 rounded-lg col-span-2"
           />
-          <div className="flex flex-col gap-2 justify-center">
-            <h2 className="text-3xl uppercase font-semibold">{brandInfo}</h2>
-            <div className="grid grid-rows-2 gap-1">
-              <Badge
-                className="bg-blue-500 badge shadow-sm shadow-gray-500 text-slate-800"
-              >
-                <History />
-                jaminan uang kembali
+          <div className="flex flex-col gap-2 justify-center col-span-3">
+            <Link href={`/${brandInfo.category}`} className="group">
+              <h2 className="text-2xl uppercase font-semibold">
+                {brandInfo.name}
+              </h2>
+              <p className="uppercase group-hover:underline text-xl font-medium">
+                {brandInfo.category}
+              </p>
+            </Link>
+            <div className="flex gap-1">
+              <Badge className="bg-blue-500 text-xs">
+                <DynamicIcon name="check-check" />
+                Verified
               </Badge>
-              <Badge className="bg-green-500 badge shadow-sm shadow-gray-500 text-slate-800">
-                <Timer />
-                maximal 5 menit
+              <Badge className="bg-green-500 text-xs">
+                <DynamicIcon name="shield-check" />
+                Trusted
               </Badge>
             </div>
           </div>

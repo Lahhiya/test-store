@@ -1,99 +1,112 @@
 [
-    {
-        "id": 1,
-        "name": "Weekly Diamond Pass",
-        "subCategory": "mobile legend",
-        "price": 30581,
-        "discount": 11,
-        "stock": 25,
-        "sold": 18
-    },{
-        "id": 2,
-        "name": "2010 (1708 + 302)",
-        "subCategory": "mobile legend",
-        "price": 527250,
-        "discount": 8,
-        "stock": 8,
-        "sold": 2
-    },{
-        "id": 3,
-        "name": "3 Diamonds",
-        "subCategory": "mobile legend",
-        "price": 1195,
-        "discount": 80,
-        "stock": 50,
-        "sold": 32
-    },{
-        "id": 4,
-        "name": "5 Diamonds",
-        "subCategory": "mobile legend",
-        "price": 1579,
-        "discount": 12,
-        "stock": 40,
-        "sold": 28
-    },{
-        "id": 5,
-        "name": "12 (11+1) Diamonds",
-        "subCategory": "mobile legend",
-        "price": 3688,
-        "discount": 5,
-        "stock": 30,
-        "sold": 22
-    },{
-        "id": 6,
-        "name": "19 (17+2) Diamonds",
-        "subCategory": "mobile legend",
-        "price": 5797,
-        "discount": 7,
-        "stock": 25,
-        "sold": 19
-    },{
-        "id": 7,
-        "name": "28 (25+3) Diamonds",
-        "subCategory": "mobile legend",
-        "price": 8436,
-        "discount": 10,
-        "stock": 20,
-        "sold": 15
-    },{
-        "id": 8,
-        "name": "44 (40+4) Diamonds",
-        "subCategory": "mobile legend",
-        "price": 12654,
-        "discount": 12,
-        "stock": 18,
-        "sold": 14
-    },{
-        "id": 9,
-        "name": "85 (77+8) Diamonds",
-        "subCategory": "mobile legend",
-        "price": 24254,
-        "discount": 15,
-        "stock": 15,
-        "sold": 11
-    },{
-        "id": 10,
-        "name": "170 (154+16) Diamonds",
-        "subCategory": "mobile legend",
-        "price": 48507,
-        "discount": 18,
-        "stock": 10,
-        "sold": 7
-    },{
-        "id": 11,
-        "name": "169 Diamonds",
-        "subCategory": "mobile legend",
-        "price": 65800,
-        "discount": 20,
-        "stock": 8,
-        "sold": 6
-    },{
-        "id": 12,
-        "name": "59 (53+6) Diamonds",
-        "subCategory": "mobile legend",
-        "price": 16872,
-        "discount": 10,
-        "stock": 22,
-        "sold": 17
-    }
+  {
+    "id": 1,
+    "brand": "Mobile Legends",
+    "product": "Weekly Diamond Pass",
+    "category": "game",
+    "price": 30000,
+    "discount": 15,
+    "stock": 50,
+    "sold": 12,
+    "image": "mole"
+  },
+  {
+    "id": 3,
+    "brand": "Mobile Legends",
+    "product": "172 Diamonds",
+    "category": "game",
+    "price": 40000,
+    "discount": 10,
+    "stock": 30,
+    "sold": 25,
+    "image": "mole"
+  },
+  {
+    "id": 6,
+    "brand": "PUBG Mobile",
+    "product": "60 UC",
+    "category": "game",
+    "price": 15000,
+    "discount": 20,
+    "stock": 100,
+    "sold": 45,
+    "image": "pubgm"
+  },
+  {
+    "id": 11,
+    "brand": "Free Fire",
+    "product": "50 Diamonds",
+    "category": "game",
+    "price": 8000,
+    "discount": 50,
+    "stock": 200,
+    "sold": 180,
+    "image": "efef"
+  },
+  {
+    "id": 16,
+    "brand": "Valorant",
+    "product": "475 Points",
+    "category": "game",
+    "price": 52000,
+    "discount": 5,
+    "stock": 40,
+    "sold": 8,
+    "image": "valo"
+  },
+  {
+    "id": 21,
+    "brand": "Genshin Impact",
+    "product": "Blessing of Welkin",
+    "category": "game",
+    "price": 79000,
+    "discount": 12,
+    "stock": 25,
+    "sold": 10,
+    "image": "gi"
+  },
+  {
+    "id": 26,
+    "brand": "Dana",
+    "product": "Dana 20K",
+    "category": "ewallet",
+    "price": 21500,
+    "discount": 8,
+    "stock": 150,
+    "sold": 90,
+    "image": "dana"
+  },
+  {
+    "id": 31,
+    "brand": "OVO",
+    "product": "OVO 20K",
+    "category": "ewallet",
+    "price": 22000,
+    "discount": 5,
+    "stock": 100,
+    "sold": 30,
+    "image": "ovo"
+  },
+  {
+    "id": 36,
+    "brand": "Gopay",
+    "product": "Gopay 10K",
+    "category": "ewallet",
+    "price": 12000,
+    "discount": 10,
+    "stock": 80,
+    "sold": 55,
+    "image": "gopay"
+  },
+  {
+    "id": 41,
+    "brand": "ShopeePay",
+    "product": "SPay 10K",
+    "category": "ewallet",
+    "price": 11000,
+    "discount": 15,
+    "stock": 120,
+    "sold": 70,
+    "image": "spay"
+  }
 ]

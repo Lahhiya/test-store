@@ -10,16 +10,16 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import productIcon from "@/assets/products/banner.webp";
 
 export default function ProductItem({ item }: { item: hotItemType }) {
+  const slug = item.brand.toLowerCase().replace(" ","-")
   return (
-    <Link href={`/product/${item.id}`} className="group">
+    <Link href={`/${item.category}/${slug}`} className="group">
       <Card className="h-44 gap-2 relative hover:shadow-md border-muted hover:border-primary hover:scale-105 duration-100">
         <CardHeader className="p-3 h-1/2 w-full  flex justify-center items-center bg-slate-50">
           <div className="relative w-16 h-16">
             <Image
-              src={productIcon}
+              src={`/products/${item.image}.png`}
               alt={item.brand}
               fill
               className="object-contain rounded-md w-full"
@@ -31,7 +31,7 @@ export default function ProductItem({ item }: { item: hotItemType }) {
             {item.brand}
           </CardTitle>
           <CardDescription className="text-sm line-clamp-2">
-            {item.name}
+            {item.product}
           </CardDescription>
         </CardContent>
       </Card>

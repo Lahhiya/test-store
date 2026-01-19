@@ -12,35 +12,43 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import productIcon from "@/assets/products/banner.webp";
 export default function FlashItem({
   productItem,
 }: {
   productItem: FlashItemTypes;
 }) {
+
+
+
+
   const sold = (productItem.sold / productItem.stock) * 100;
   const stockLeft = productItem.stock - productItem.sold;
   const discountPrice =
     productItem.price - (productItem.price * productItem.discount) / 100;
   const discountedPrice = Number(discountPrice.toFixed(0));
 
+
+  const slug = productItem.brand.toLowerCase().replace(" ", "-");
+
   return (
-    <Link href={"/"} className="block w-full">
+    <Link href={`/${productItem.category}/${slug}`} className="block w-full">
       <Card className="w-full min-h-[320px] flex flex-col justify-between overflow-hidden">
         <CardHeader className="p-4 flex flex-col items-center">
           <div className="relative w-24 h-24 mb-2">
             <Image
-              src={productIcon}
+              src={`/products/${productItem.image}.png`}
+              width={100}
+              height={100}
               alt="product"
               className="object-contain rounded-2xl"
             ></Image>
           </div>
           <div className="space-y-1 text-center">
             <CardTitle className="text-sm line-clamp-1">
-              {productItem.name}
+              {productItem.brand}
             </CardTitle>
             <CardDescription className="text-xs">
-              {productItem.subCategory}
+              {productItem.product}
             </CardDescription>
           </div>
         </CardHeader>
