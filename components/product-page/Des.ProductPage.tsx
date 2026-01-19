@@ -5,12 +5,11 @@ import { DynamicIcon } from "lucide-react/dynamic";
 import { Separator } from "../ui/separator";
 import Link from "next/link";
 import { wrapBrandInfoType } from "@/schema/wrapper.schemas";
-import { check } from "zod";
 export default function DesProductPage({brandInfo} : {brandInfo : wrapBrandInfoType}) {
   return (
-    <div className="w-full max-h-[500px] col-span-2 bg-card rounded-lg p-5 shadow shadow-gray-300">
+    <div className="w-full max-h-[500px]  col-span-2 bg-card rounded-lg p-5 shadow shadow-gray-300">
       <div className="flex flex-col gap-5 items-center shadow shadow-gray-200 p-2 rounded-lg ">
-        <div className="gap-2 p-4 my-3 min-h-full grid grid-cols-5 w-full rounded-2xl overflow-hidden">
+        <div className="gap-2 my-1 min-h-full grid justify-center items-center grid-cols-5 w-full rounded-2xl overflow-hidden">
           <Image
             src={`/products/${brandInfo.image}.png`}
             width={100}
@@ -20,14 +19,14 @@ export default function DesProductPage({brandInfo} : {brandInfo : wrapBrandInfoT
           />
           <div className="flex flex-col gap-2 justify-center col-span-3">
             <Link href={`/${brandInfo.category}`} className="group">
-              <h2 className="text-2xl uppercase font-semibold">
+              <h2 className="text-sm md:text-2xl uppercase font-semibold">
                 {brandInfo.name}
               </h2>
               <p className="lowercase group-hover:underline text-lg font-medium">
                 {brandInfo.category}
               </p>
             </Link>
-            <div className="flex gap-1">
+            <div className="hidden lg:flex gap-1">
               <Badge className="bg-blue-500 text-xs">
                 <DynamicIcon name="check-check" />
                 Verified
@@ -39,14 +38,24 @@ export default function DesProductPage({brandInfo} : {brandInfo : wrapBrandInfoT
             </div>
           </div>
         </div>
+        <div className="flex lg:hidden gap-5">
+          <Badge className="bg-blue-500 text-xs">
+            <DynamicIcon name="check-check" />
+            Verified
+          </Badge>
+          <Badge className="bg-green-500 text-xs">
+            <DynamicIcon name="shield-check" />
+            Trusted
+          </Badge>
+        </div>
         <span className="w-[90%]">
-          <Separator className="my-4" />
+          <Separator className="my-1" />
         </span>
         <div className="flex flex-col items-baseline">
-          <h3 className="text-lg font-semibold capitalize">
+          <h3 className="text-sm md:text-lg font-semibold capitalize">
             Cara Melakukan Pembayaran :
           </h3>
-          <ul className="text-sm lowercase">
+          <ul className="text-xs md:text-sm lowercase">
             <li>
               <p>
                 1. Lorem ipsum dolor sit amet consectetur, adipisicing elit.

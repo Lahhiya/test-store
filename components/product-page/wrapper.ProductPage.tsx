@@ -170,7 +170,7 @@ export default function PageProduct({
   }
 
   return (
-    <div className="grid gap-5 mx-5 h-100 grid-cols-1 md:grid-cols-5">
+    <div className="grid gap-5 justify-center  mx-5 h-100 grid-cols-1 md:grid-cols-5">
       <DesProductPage brandInfo={WrapbrandInfo} />
       <ContProductPage
         brandInfo={WrapbrandInfo}

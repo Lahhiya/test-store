@@ -29,7 +29,7 @@ export default async function PageCategory({params} : { params : Promise<{catego
     ...new Map(filterByCategory.map((item) => [item.brand, item])).values(),
   ];
   return (
-    <div className="grid grid-cols-5 gap-3.5">
+    <div className="grid grid-cols-3 lg:grid-cols-5 gap-3.5">
       {
         filterPerBrand.map((item)=>{
           return(
